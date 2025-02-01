@@ -67,15 +67,15 @@
                                 <div><strong>Open-ended ToM</strong>: AutoToM can operate in any domain, infer any mental variable, and conduct robust ToM reasoning of any order.</div>
                             </div>
                             <div class="icon-item">
-                                <img src="./static/img/icons/recipe.svg" alt="Instruction Tuning Recipes Icon">
+                                <img src="./static/img/icons/connector.svg" alt="Connector Design Icon">
                                 <div><strong>LLM Meets Inverse Planning</strong>: AutoToM integrates the flexibility of LLMs with the robustness of Bayesian inverse planning.</div>
                             </div>
                             <div class="icon-item">
-                                <img src="./static/img/icons/connector.svg" alt="Connector Design Icon">
-                                <div><strong>Automated Bayesian Inverse Planning</strong>: AutoToM conducts inverse planning for any BToM model, automating both hypothesis sampling and Bayesian inference.</div>
+                                <img src="./static/img/icons/recipe.svg" alt="Instruction Tuning Recipes Icon">
+                                <div><strong>Automated Bayesian Inverse Planning</strong>: AutoToM conducts inverse planning for any specified BToM model, automating the hypothesis sampling and Bayesian inference.</div>
                             </div>
                             <div class="icon-item">
-                                <img src="./static/img/icons/data.svg" alt="Instruction Tuning Data Icon">
+                                <img src="./static/img/icons/magnifier.svg" alt="Magnifier Icon">
                                 <div><strong>Automated Model Discovery</strong>: AutoToM performs automated model proposals and iteratively refines the BToM model by adjusting variables and timesteps.</div>
                             </div>
                             <div class="icon-item">
@@ -157,12 +157,14 @@
         
         <p class="text abstract">
 
-            We introduce Cambrian-1, a family of multimodal LLMs (MLLMs) designed with a <strong>vision-<i>centric</i></strong> approach. 
-            While stronger language models can enhance multimodal capabilities, 
-            the design choices for vision components are often insufficiently explored and disconnected from visual representation learning research. 
+            We introducing AutoToM, a fully <strong>automated</strong> and <strong>open-ended</strong> Theory of Mind reasoning method.
+            Current approaches to Theory of Mind reasoning either rely on prompting Large Language Models (LLMs), which are prone to systematic errors, 
+            or use rigid, handcrafted Bayesian Theory of Mind (BToM) models, which are more robust but cannot generalize across different domains.
+
+            AutoToM is the first model-based ToM method that addresses open-ended scenarios, offering a scalable, robust, and interpretable approach to machine ToM. 
 
             <br><br>
-            Cambrian-1 is structured around five key pillars, each offering important insights into the design space of MLLMs:
+            AutoToM is characterized by the following features:
             <ol class="text">
                 <li><strong><a href="#visual_representations">&sect;Visual Representations</a></strong>: We explore various vision encoders and their combinations.</li>
                 <li><strong><a href="#connector_design">&sect;Connector Design</a></strong>: We design a new dynamic and <i>spatially-aware</i> connector that integrates visual features from several models with LLMs while reducing the number of tokens.</li>
@@ -202,11 +204,13 @@
 
 
         <p class="text abstract">
-            To this end, Cambrian-1 not only achieves state-of-the-art performance, but also serves as a comprehensive, open cookbook for instruction-tuned MLLMs. See <a href="#State-of-the-art-MLLM-performance">§State-of-the-art MLLM performance</a>. 
+            <!-- To this end, Cambrian-1 not only achieves state-of-the-art performance, but also serves as a comprehensive, open cookbook for instruction-tuned MLLMs. See <a href="#State-of-the-art-MLLM-performance">§State-of-the-art MLLM performance</a>. 
             We provide <a href="https://huggingface.co/nyu-visionx" target="_blank">model weights</a>, 
             <a href="https://github.com/cambrian-mllm/cambrian" target="_blank">code</a>, 
             <a href="https://huggingface.co/nyu-visionx" target="_blank">datasets</a>, 
-            and detailed instruction-tuning and evaluation recipes. We hope our release will inspire and accelerate advancements in multimodal systems and visual representation learning.
+            and detailed instruction-tuning and evaluation recipes. We hope our release will inspire and accelerate advancements in multimodal systems and visual representation learning. -->
+
+            To this end, AutoTo not only achieves state-of-the-art performance in diverse domains, but also serves as a comprehensive, open cookbook for how to integrate the flexibility of LLMs with the robustness of model-based methods.
         </p>
 
         
