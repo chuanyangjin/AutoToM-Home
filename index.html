@@ -290,27 +290,12 @@
                 <p class="text">
                     Prior works on Bayesian inverse planning rely on manually designed BToM models, which limits their applicability to domain-specific scenarios. In contrast, the Automated Model Discovery component automatically proposes a model and dynamically adjusts it to ensure both the <i>effectiveness</i> of the model—confidently inferring agents' mental states—and the <i>efficiency</i> of the inference by minimizing model complexity.
                 </p>
-
-                
-                <d-figure id="fig-mllm_as_interface">
-                    <figure class="responsive-content">
-                        <iframe src="static/img/tuning_recipes_plot.html"></iframe>
-                        <img data-zoomable="" draggable="false" src="static/img/mllm_interface_shared.png" alt="MLLMs as an interface to evaluate visual representations">
-                        <figcaption>
-                            <strong>Figure 4:</strong> MLLMs as an interface to evaluate visual representations.
-                        </figcaption>
-                    </figure>
-                    <p class="click-hint" style="width: 85%; margin-top: -2em;" id="mllm_interface_click_hint">
-                        <img src="static/img/icons/click.gif" style="width: 1.5rem">
-                        <strong>Hover & click to interact.</strong>
-                    </p>                
-                </d-figure>
                 <p class="text">
                     <strong>Information Extraction.</strong> 
                     The information extraction module processes the given context to identify the values of observable variables \( X^{1:t} \), 
                     including states, actions, and utterances, organized along a timeline. 
                     When there are multiple agents, we first identify whose mental state the question is asking about, 
-                    and then construct the timesteps based on the actions of the target agent.
+                    and then construct the timesteps based on its actions.
                 </p>
                 <p class="text">
                     <strong>Information Extraction.</strong> 
@@ -321,11 +306,15 @@
                 </p>
                 <p class="text">
                     <strong>Model Adjustment.</strong> 
-                    We iteratively adjust the proposed model by considering two types of model adjustments: variable adjustment and timestep adjustment. <br>
-                    <i>Variable Adjustment:</i> We refine the model structure at a specific timestep by iteratively introducing new, relevant latent variables into the model to address uncertainty in the inference. 
-                    For each adjustment, we compute the updated model utility and accept the modification that offers the biggest increase in utility. 
-                    This iterative process continues until no further significant improvements are possible.<br>
-                    <i>Timestep Adjustment:</i> If the model utility remains low and no significant improvements can be achieved through variable adjustment given the current timesteps \( t_s:t \), 
+                    We iteratively adjust the proposed model by considering two types of model adjustments: variable adjustment and timestep adjustment.
+                </p>
+                <p class="text">
+                    <i>Variable Adjustment:</i> 
+                    We refine the model structure at a specific timestep by iteratively introducing new, relevant latent variables into the model to address uncertainty in the inference. 
+                    For each adjustment, we compute the updated model utility and accept the modification that offers the biggest increase in utility.
+                <p class="text">
+                    <i>Timestep Adjustment:</i> 
+                    If the model utility remains low and no significant improvements can be achieved through variable adjustment given the current timesteps \( t_s:t \), 
                     we may need to incorporate an additional timestep, \( t_s-1 \), to provide more context for the inference. 
                     When we add one more timestep, we first apply the model structure in the initial model proposal, and then conduct variable adjustments for this new timestep as well.
                 </p>
@@ -334,7 +323,7 @@
                     <figure>
                         <img data-zoomable="" draggable="false" src="static/img/model_adjustment.png" alt="Model Adjustment">
                         <figcaption>
-                            <strong>Figure 4:</strong> We automatically refine the BToM model by alternating between (A) variable adjustment and (B) timestep adjustment.
+                            <strong>Figure 4:</strong> We automatically refine the BToM model by alternating between variable adjustment and timestep adjustment.
                         </figcaption>
                     </figure>
                 </d-figure>
