@@ -198,15 +198,15 @@
         </p>
 
 
-        <p class="text abstract">
+        <!-- <p class="text abstract"> -->
             <!-- To this end, Cambrian-1 not only achieves state-of-the-art performance, but also serves as a comprehensive, open cookbook for instruction-tuned MLLMs. See <a href="#State-of-the-art-MLLM-performance">§State-of-the-art MLLM performance</a>. 
             We provide <a href="https://huggingface.co/nyu-visionx" target="_blank">model weights</a>, 
             <a href="https://github.com/cambrian-mllm/cambrian" target="_blank">code</a>, 
             <a href="https://huggingface.co/nyu-visionx" target="_blank">datasets</a>, 
             and detailed instruction-tuning and evaluation recipes. We hope our release will inspire and accelerate advancements in multimodal systems and visual representation learning. -->
 
-            To this end, AutoToM not only achieves state-of-the-art performance in diverse domains, but also serves as a open cookbook for integrating the flexibility of LLMs with the robustness of model-based reasoning.
-        </p>
+            <!-- To this end, AutoToM not only achieves state-of-the-art performance in diverse domains, but also serves as a open cookbook for integrating the flexibility of LLMs with the robustness of model-based reasoning. -->
+        <!-- </p> -->
 
         
 
@@ -218,8 +218,9 @@
                 <h1 class="text">Model-based Theory of Mind</h1>
 
                     <p class="text">
+                        <h3 class="text">Understanding the Challenge of Theory of Mind</h3>
                         <p class="text">
-                            <strong>The challenge of Theory of Mind:</strong> 
+                            <!-- <strong>The challenge of Theory of Mind.</strong>  -->
                             Theory of Mind (ToM), the ability to understand people's mental variables based on their behavior, is key to developing socially intelligent agents. 
                             <!-- Current approaches to Theory of Mind reasoning either rely on prompting Large Language Models (LLMs), which are prone to systematic errors, 
                             or use rigid, handcrafted Bayesian Theory of Mind (BToM) models, which are more robust but cannot generalize across different domains.</li> -->
@@ -227,14 +228,15 @@
                         <p class="text">
                             There are two current approaches to Theory of Mind reasoning: 
                             <ol class="text">
-                                <li>Directly applying LLMs to reason about people's mental states with prompting strategies such as perspective-taking, change-tracking, and temporal-spatial reasoning. However, even with these advanced prompting techniques, LLMs still make systematic errors in complex scenarios.<d-cite key="jin2024mmtom"></d-cite></li>
-                                <li>Using Model-based inference, particularly Bayesian inverse planning (BIP). 
+                                <li>Directly applying LLMs to reason about people's mental states with prompting strategies such as perspective-taking, change-tracking, and temporal-spatial reasoning<d-cite key="sclar2023minding"></d-cite><d-cite key="wilf2023think"></d-cite><d-cite key="hou2024timetom"></d-cite>. However, even with these advanced prompting techniques, LLMs still make systematic errors in complex scenarios.<d-cite key="jin2024mmtom"></d-cite></li>
+                                <li>Using model-based inference, particularly Bayesian Inverse Planning (BIP). 
                                     Recent works have proposed to combine BIP and LLMs to achieve scalable yet robust model-based ToM inference<d-cite key="jin2024mmtom"></d-cite><d-cite key="shi2024muma"></d-cite>. 
                                     While these methods significantly outperform LLMs in specific domains, they use rigid, handcrafted models, which cannot generalize across different domains.</li>
                             </ol>
                         </p>
+                        <h3 class="text">Bayesian Inverse Planning: A Robust Framework</h3>
                         <p class="text">
-                            <strong>Bayesian Inverse Planning:</strong> 
+                            <!-- <strong>Bayesian Inverse Planning.</strong>  -->
                             Bayesian Inverse Planning (BIP) models how observers infer unobservable mental states—such as beliefs and goals—from an agent's behavior<d-cite key="baker2009action"></d-cite>. 
                             It assumes that the agent acts rationally according to a Bayesian Theory of Mind (BToM) model, which specifies how internal variables lead to observable actions in a Bayesian network. 
                             Using inverse inference, BIP inverts this generative process to assess what latent mental variables can lead to observed agent behavior. 
@@ -246,8 +248,10 @@
                             2) There are many time steps in a given context, and we needs to reason which steps are relevant;
                             3) There is no predefined hypothesis space for each mental variable.
                         </p>
+                        <h3 class="text">AutoToM: A Paradigm Shift</h3>
+                        <!-- A Paradigm Shift in Model-Based Reasoning. A Revolutionary Approach.-->
                         <p class="text">
-                            <strong>AutoToM:</strong> 
+                            <!-- <strong>A Revolutionary Approach.</strong>  -->
                             We introduce AutoToM, a fully <strong>automated</strong> and <strong>open-ended</strong> model-based Theory of Mind reasoning method.
                             It automates every aspect of Bayesian inverse planning, including the proposal and adjustment of model structures, the identification of relevant timesteps, 
                             the generation of hypotheses, and the execution of Bayesian inference. 
@@ -285,13 +289,15 @@
                 <p class="text">
                     <strong>Hypothesis Sampling. </strong> 
                     Conventional BIP assumes a maually defined hypothesis space as well as hypothesis representation for each latent mental variable. 
-                    Our hypothesis sampling module instead leverages an LLM to propose only a small set of quality hypotheses for each latent variable in \( V^{t_s:t} \).
-                    To remove spurious hypotheses generated by the LLM, we further apply <i>hypothesis reduction</i> to eliminate unlikely hypotheses and reduce the hypothesis space.
+                    Our hypothesis sampling module instead leverages an LLM to propose only a small set of quality hypotheses for each latent variable.
+                    <!-- in \( V^{t_s:t} \). -->
+                    We further apply <i>hypothesis reduction</i> to eliminate unlikely hypotheses and reduce the hypothesis space.
                 </p>
                 
                 <p class="text">
                     <strong>Bayesian Inference.</strong> 
-                    We estimate each local conditional in \( P(V^{t_s:t}, X^{t_s:t}) \) using an LLM. 
+                    <!-- We estimate each local conditional in \( P(V^{t_s:t}, X^{t_s:t}) \) using an LLM.  -->
+                    We estimate each local conditional in the BToM model using an LLM.
                     After marginalizing the joint distribution over non-target latent variables, we then produce the posterior probabilities of the target variable.
                 </p>
                 <d-figure id="fig-studyadapter" >
@@ -313,8 +319,8 @@
                 </p>
                 <p class="text">
                     <strong>Information Extraction.</strong> 
-                    The information extraction module processes the given context to identify the values of observable variables \( X^{1:t} \), 
-                    <!-- The information extraction module processes the given context to identify the values of observable variables,  -->
+                    The information extraction module processes the given context to identify the values of observable variables,
+                    <!-- The information extraction module processes the given context to identify the values of observable variables \( X^{1:t} \),  -->
                     including states, actions, and utterances, organized along a timeline. 
                     When there are multiple agents, we first identify whose mental state the question is asking about, 
                     and then construct the timesteps based on its actions.
@@ -359,7 +365,7 @@
                 We evaluated our method on multiple Theory of Mind benchmarks, including ToMi<d-cite key="le2019revisiting"></d-cite>, BigToM<d-cite key="gandhi2024understanding"></d-cite>, 
                 MMToM-QA<d-cite key="jin2024mmtom"></d-cite>, MuMA-ToM<d-cite key="shi2024muma"></d-cite>, and Hi-ToM<d-cite key="he2023hi"></d-cite>. 
                 As shown in <a href="#fig-benchmarks">Figure 4</a>, these benchmarks encompass different mental variables, observable contexts, numbers of agents, the presence or absence of utterances, wording styles, and modalities.
-                AutoToM autonomously discover the appropriate models for them.
+                AutoToM autonomously discover the appropriate BToM models for them.
                 <!-- Finally, we leverage the insights from all of our previous studies to train a high-performance Cambrian model.
                 We train with three different sizes of LLM backbones: LLaMA-3-Instruct-8B, Vicuna-1.5-13B, and Hermes-2-Yi-34B.
                 Our visual tower uses a combination of four models&mdash;SigLIP, CLIP, DINOv2, and OpenCLIP ConvNeXt 
