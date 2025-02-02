@@ -208,7 +208,7 @@
             <a href="https://huggingface.co/nyu-visionx" target="_blank">datasets</a>, 
             and detailed instruction-tuning and evaluation recipes. We hope our release will inspire and accelerate advancements in multimodal systems and visual representation learning. -->
 
-            To this end, AutoToM not only achieves state-of-the-art performance in diverse domains, but also serves as a open cookbook for integrating the flexibility of LLMs with the robustness of model-based methods.
+            To this end, AutoToM not only achieves state-of-the-art performance in diverse domains, but also serves as a open cookbook for integrating the flexibility of LLMs with the robustness of model-based reasoning.
         </p>
 
         
@@ -230,35 +230,19 @@
                         <p class="text">
                             <strong>Bayesian Inverse Planning:</strong> 
                             Bayesian Inverse Planning (BIP) models how observers infer unobservable mental states—such as beliefs and goals—from an agent's behavior <d-cite key="baker2009action"></d-cite>. 
-                            It assumes that the agent acts rationally according to a generative model, a Bayesian Theory of Mind (BToM) model, which specifies how internal variables lead to observable actions in a Bayesian network. 
+                            It assumes that the agent acts rationally according to a Bayesian Theory of Mind (BToM) model, which specifies how internal variables lead to observable actions in a Bayesian network. 
                             Using inverse inference, BIP inverts this generative process to assess what latent mental variables can lead to observed agent behavior. 
                             This probabilistic inference serves as a robust solution to ToM challenges.
                         </p>
                     <d-figure id="fig-comparison" >
                         <figure>
-                            <img data-zoomable="" draggable="false" src="static/img/bench_cat.png" alt="benchmark category">
+                            <img data-zoomable="" draggable="false" src="static/img/overview.png" alt="Overview">
                             <figcaption>
                                 <strong>Figure 1:</strong> Analyzing the benchmarks.
                                 <strong>Left:</strong> Performance comparison of MLLMs with visual input enabled and disabled across various benchmarks. <strong>Right:</strong> Principal component analysis displaying clusters of benchmarks based on performance metrics, with bubble size corresponding to benchmark size.
                             </figcaption>
                         </figure>
                     </d-figure>
-            </div>
-            <div id="cv-bench" class="sub-section">
-
-                    <p class="text"><strong>Cambrian Vision-Centric Benchmark (CV-Bench) </strong>
-                        To address the scarcity of vision-centric benchmarks, we introduce CV-Bench&mdash;repurposing standard vision tasks for multimodal evaluation. CV-Bench contains approximately 2600 vision-centric VQA questions, addressing the issues with existing vision-centric bechmark size.
-                    </p>
-
-                    <d-figure id="fig-cvcb" >
-                        <figure>
-                            <img data-zoomable="" draggable="false" src="static/img/cvcb.jpg" alt="benchmark category">
-                            <figcaption>
-                                <strong>Figure 2:</strong> Example questions in CV-Bench that focuses on 2D and 3D visual understanding.
-                            </figcaption>
-                        </figure>
-                    </d-figure>
-
             </div>
 
 
