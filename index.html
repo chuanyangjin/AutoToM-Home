@@ -217,16 +217,22 @@
 
         <div id='visual_representations' class="vision-block">
             
-            <div id="sec:benchmarking" class="sub-section">
-                <h1 class="text">Analyzing the Benchmarks</h1>
+            <div id="sec:tom" class="sub-section">
+                <h1 class="text">Theory of Mind</h1>
 
                     <p class="text">
                         <p class="text">
-                        <strong>Who's answering: LLM or MLLM?:</strong> We compare performance between vision-disabled and vision-enabled settings across MLLMs trained with 23 different vision backbones. Our findings reveal that some benchmarks such as MMMU and AI2D are less reliant on visual inputs, whereas others such as MMVP and MME experience significant performance declines, indicating their effective evaluation of multimodality</li>
+                            <strong>The challenge of the Theory of Mind:</strong> 
+                            Theory of Mind (ToM), the ability to understand people's mental variables based on their behavior, is key to developing socially intelligent agents. 
+                            Current approaches to Theory of Mind reasoning either rely on prompting Large Language Models (LLMs), which are prone to systematic errors, 
+                            or use rigid, handcrafted Bayesian Theory of Mind (BToM) models, which are more robust but cannot generalize across different domains.</li>
                         </p>
                         <p class="text">
-                            <strong>Benchmark Clustering and Analysis:</strong> Through correlation analysis and principal component analysis of MLLM performances across various benchmarks, distinct clusters emerge categorized as "General," "Knowledge," "Chart & OCR," and "Vision-Centric." 
-                            We also find that vision-centric benchmarks are underrepresented in the current evaluation landscape.
+                            <strong>Bayesian Inverse Planning:</strong> 
+                            Bayesian Inverse Planning (BIP) models how observers infer unobservable mental states—such as beliefs and goals—from an agent's behavior <d-cite key="baker2009action"></d-cite>. 
+                            It assumes that the agent acts rationally according to a generative model, a Bayesian Theory of Mind (BToM) model, which specifies how internal variables lead to observable actions in a Bayesian network. 
+                            Using inverse inference, BIP inverts this generative process to assess what latent mental variables can lead to observed agent behavior. 
+                            This probabilistic inference serves as a robust solution to ToM challenges.
                         </p>
                     <d-figure id="fig-comparison" >
                         <figure>
