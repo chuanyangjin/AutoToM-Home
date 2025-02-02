@@ -256,12 +256,15 @@
             </div>
             <div id="sec:inst_tuning" class="sub-section">
 
-            <h1 class="text">Instruction Tuning Recipes </h1>
+            <h1 class="text">Automated Bayesian Inverse Planning</h1>
                 <p class="text">
                     MLLMs connect pre-trained LLM and vision backbones using a connector such as an MLP projector. Various studies have suggested different optimal training methodologies for MLLMs.
                 </p>
                 <p class="text">
-                    <strong>One Stage vs Two Stage Training</strong> Recent work suggests skipping connector pre-training to reduce compute costs without harming performance. 
+                    <strong>Hypothesis Sampling. </strong> Conventional BIP assumes a maually defined hypothesis space as well as hypothesis representation for each latent mental variable. Our hypothesis
+                    sampling module instead leverages an LLM to propose only a small set of quality hypotheses for each latent variable in \( V^{t_s:t} \).
+                    
+                    Recent work suggests skipping connector pre-training to reduce compute costs without harming performance. 
                     We experiment with 0, 0.5M, and 1.2M adapter data. Following LLaVA's method<d-cite key="liu2023visual"></d-cite>, we initially tune only the connector, then unfreeze both the LLM and connector for instruction tuning with a 737K data mix. <a href="#fig-studyadapter">Figure 3</a> indicates that pre-training the connector boosts performance, and using more adapter data enhances it further, leading us to standardize on a 2-stage training approach with 1.2M adapter data.
                 </p>
                 
