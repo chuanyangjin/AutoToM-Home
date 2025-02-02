@@ -284,7 +284,7 @@
             </div>
 
 
-            <div id='sec:automated_model_discovery' class="viusal-representation-block">
+            <div id='sec:automated_model_discovery' class="sub-section">
             <h1 class="text">Automated Model Discovery </h1>
                 
                 <p class="text">
@@ -300,7 +300,7 @@
                 <p class="text">
                     <strong>Information Extraction.</strong> 
                     We employ an LLM to propose an initial BToM model tailored to the available information \( X^{1:t} \) and the query. 
-                    Following this model, we conduct <a href="sec:automated_model_discovery">automated Bayesian inverse planning</a>.
+                    Following this model, we conduct <a href="#sec:automated_model_discovery">automated Bayesian inverse planning</a>.
                     If the model utility exceeds a threshold, we accept the inference result as the final answer. 
                     Otherwise, we use the model utility to guide model adjustments.
                 </p>
@@ -318,7 +318,7 @@
                     we may need to incorporate an additional timestep, \( t_s-1 \), to provide more context for the inference. 
                     When we add one more timestep, we first apply the model structure in the initial model proposal, and then conduct variable adjustments for this new timestep as well.
                 </p>
-
+                
                 <d-figure id="fig-studyadapter" >
                     <figure>
                         <img data-zoomable="" draggable="false" src="static/img/model_adjustment.png" alt="Model Adjustment">
@@ -783,7 +783,19 @@
         </div>
 
         <div id='sota' class="sota-block">
-            <h1 class="text">State of the Art MLLM Performance</h1>
+            <h1 class="text">Towards Open-ended Theory of Mind</h1>
+            <d-figure id="fig-sysprompt">
+                <figure>
+                    <img data-zoomable="" draggable="false" src="static/img/benchmarks_and_models.png" alt="Incorporating System Prompt in Instruction Tuning Data alleviates “Answer Machine Phenomenon”">
+                    <figcaption>
+                        <strong>Figure 5:</strong> Examples questions and the necessary BToM model in diverse Theory of Mind benchmarks. 
+                        AutoToM aims to answer any ToM question in a variety of benchmarks, encompassing different mental variables, observable contexts, 
+                        numbers of agents, the presence or absence of utterances, wording styles, and modalities.
+                    </figcaption>
+                </figure>
+            </d-figure>
+
+            
             <p class="text">
                 Finally, we leverage the insights from all of our previous studies to train a high-performance Cambrian model.
                 We train with three different sizes of LLM backbones: LLaMA-3-Instruct-8B, Vicuna-1.5-13B, and Hermes-2-Yi-34B.
