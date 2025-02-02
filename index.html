@@ -784,25 +784,30 @@
 
         <div id='sota' class="sota-block">
             <h1 class="text">Towards Open-ended Theory of Mind</h1>
+            <p class="text">
+                We evaluated our method on multiple Theory of Mind benchmarks, including ToMi <d-cite key="le2019revisiting"></d-cite>, BigToM <d-cite key="gandhi2024understanding"></d-cite>, 
+                MMToM-QA <d-cite key="jin2024mmtom"></d-cite>, MuMA-ToM <d-cite key="shi2024muma"></d-cite>, and Hi-ToM <d-cite key="he2023hi"></d-cite>.
+                <!-- Finally, we leverage the insights from all of our previous studies to train a high-performance Cambrian model.
+                We train with three different sizes of LLM backbones: LLaMA-3-Instruct-8B, Vicuna-1.5-13B, and Hermes-2-Yi-34B.
+                Our visual tower uses a combination of four models&mdash;SigLIP, CLIP, DINOv2, and OpenCLIP ConvNeXt 
+                (see <a href="#sec:model_ensemble">Combining Multiple Vision Encoders</a>) with the <a href="#connector_design">Spatial Vision Aggregator</a>.
+                We use 2.5M adapter data and Cambrian-7M instruction tuning data (see <a href="#sec:data_curation">Data Curation</a>).
+                We evaluate our models on the <a href="#sec:benchmarking">categorized benchmarks</a>, and tabulate the results in <a href="#tab:final_table">Table 5</a>. Cambrian-1 exceeds other open-source models such as LLaVA-NeXT and Mini-Gemini, and achieves comparable performance on a number of benchmarks with the best proprietary models such as GPT-4V, Gemini-Pro, and MM-1. -->
+            </p>
+
             <d-figure id="fig-sysprompt">
                 <figure>
                     <img data-zoomable="" draggable="false" src="static/img/benchmarks_and_models.png" alt="Incorporating System Prompt in Instruction Tuning Data alleviates “Answer Machine Phenomenon”">
                     <figcaption>
-                        <strong>Figure 5:</strong> Examples questions and the necessary BToM model in diverse Theory of Mind benchmarks. 
-                        AutoToM aims to answer any ToM question in a variety of benchmarks, encompassing different mental variables, observable contexts, 
-                        numbers of agents, the presence or absence of utterances, wording styles, and modalities.
+                        <strong>Figure 5:</strong> Examples questions and the necessary BToM model in diverse benchmarks, 
+                        encompassing different mental variables, observable contexts, numbers of agents, the presence or absence of utterances, wording styles, and modalities.
                     </figcaption>
                 </figure>
             </d-figure>
 
             
             <p class="text">
-                Finally, we leverage the insights from all of our previous studies to train a high-performance Cambrian model.
-                We train with three different sizes of LLM backbones: LLaMA-3-Instruct-8B, Vicuna-1.5-13B, and Hermes-2-Yi-34B.
-                Our visual tower uses a combination of four models&mdash;SigLIP, CLIP, DINOv2, and OpenCLIP ConvNeXt 
-                (see <a href="#sec:model_ensemble">Combining Multiple Vision Encoders</a>) with the <a href="#connector_design">Spatial Vision Aggregator</a>.
-                We use 2.5M adapter data and Cambrian-7M instruction tuning data (see <a href="#sec:data_curation">Data Curation</a>).
-                We evaluate our models on the <a href="#sec:benchmarking">categorized benchmarks</a>, and tabulate the results in <a href="#tab:final_table">Table 5</a>. Cambrian-1 exceeds other open-source models such as LLaVA-NeXT and Mini-Gemini, and achieves comparable performance on a number of benchmarks with the best proprietary models such as GPT-4V, Gemini-Pro, and MM-1.
+                Unlike our AutoToM method, many recent ToM baselines can only be applied to specific benchmarks. Among general methods, AutoToM achieved the best result on average.
             </p>
             <div id="tab:final_table" style="display: flex; flex-direction: column; align-items: center;" class="figure">
                 <div class="table-container">
