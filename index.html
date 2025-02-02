@@ -349,9 +349,28 @@
                 
                 <d-figure id="fig-studyadapter" >
                     <figure>
-                        <img data-zoomable="" draggable="false" src="static/img/model_adjustment.png" alt="Model Adjustment">
+                        <div style="text-align: center;">
+                            <img data-zoomable="" draggable="false" src="static/img/model_adjustment.png" alt="Model Adjustment" style="width: 75%;">
+                        </div>
                         <figcaption>
                             <strong>Figure 3:</strong> We automatically refine the BToM model by alternating between variable adjustment and timestep adjustment.
+                        </figcaption>
+                    </figure>
+                </d-figure>
+
+                <p class="text">
+                    <strong>Effective and Efficient.</strong>
+                    The results from our ablation study (<a href="#fig-comparison">Figure 4</a>) demonstrate that the automatic model discovery in AutoToM can construct suitable BToM model that 
+                    not only enables rich ToM inferences but also reduces compute, balancing accuracy and cost.
+                </p>
+
+                <d-figure id="fig-comparison" >
+                    <figure>
+                        <div style="text-align: center;">
+                            <img data-zoomable="" draggable="false" src="static/img/comparison.png" alt="Comparison" style="width: 75%;">
+                        </div>
+                        <figcaption>
+                            <strong>Figure 4:</strong> Averaged performance and compute of AutoToM and the ablated methods on all benchmarks.
                         </figcaption>
                     </figure>
                 </d-figure>
@@ -364,7 +383,7 @@
             <p class="text">
                 We evaluated our method on multiple Theory of Mind benchmarks, including ToMi<d-cite key="le2019revisiting"></d-cite>, BigToM<d-cite key="gandhi2024understanding"></d-cite>, 
                 MMToM-QA<d-cite key="jin2024mmtom"></d-cite>, MuMA-ToM<d-cite key="shi2024muma"></d-cite>, and Hi-ToM<d-cite key="he2023hi"></d-cite>. 
-                As shown in <a href="#fig-benchmarks">Figure 4</a>, these benchmarks encompass different mental variables, observable contexts, numbers of agents, the presence or absence of utterances, wording styles, and modalities.
+                As shown in <a href="#fig-benchmarks">Figure 5</a>, these benchmarks encompass different mental variables, observable contexts, numbers of agents, the presence or absence of utterances, wording styles, and modalities.
                 AutoToM autonomously discover the appropriate BToM models for them.
                 <!-- Finally, we leverage the insights from all of our previous studies to train a high-performance Cambrian model.
                 We train with three different sizes of LLM backbones: LLaMA-3-Instruct-8B, Vicuna-1.5-13B, and Hermes-2-Yi-34B.
@@ -378,7 +397,7 @@
                 <figure>
                     <img data-zoomable="" draggable="false" src="static/img/benchmarks_and_models.png" alt="Incorporating System Prompt in Instruction Tuning Data alleviates “Answer Machine Phenomenon”">
                     <figcaption>
-                        <strong>Figure 4:</strong> Examples questions and the necessary BToM model in diverse benchmarks.
+                        <strong>Figure 5:</strong> Examples questions and the necessary BToM model in diverse benchmarks.
                     </figcaption>
                 </figure>
             </d-figure>
@@ -796,9 +815,6 @@
                         </tbody>
                     </table>
                 </div>
-                <figcaption style="text-align: center; width: 140%;">
-                    Table 5: Cambrian-1 outperforms other open-source models and achieves comparable performance with proprietary models, while using only 576 visual tokens.
-                </figcaption>
             </div>
             <p style="padding: 1em"></p>
             <d-figure id="fig-comparison">
