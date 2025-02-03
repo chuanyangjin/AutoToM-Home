@@ -11,14 +11,14 @@
         <meta property="og:url" content="https://chuanyangjin.com/AutoToM/" />
         <meta property="og:image" content="https://cambrian-mllm.github.io/static/img/preview.png" />
         <meta property="og:title" content="AutoToM: Automated Bayesian Inverse Planning and Model Discovery for Open-ended Theory of Mind" />
-        <meta property="og:description" content="Cambrian-1 is a family of multimodal LLMs with a vision-centric design. We also release CV-Bench, a new vision-centric benchmark, and Cambrian-10M, a multimodal instruction-tuning dataset." />
+        <meta property="og:description" content="AutoToM is a fully automated and open-ended Theory of Mind reasoning method." />
         
         <!-- Twitter -->
         <meta name="twitter:url" content="https://chuanyangjin.com/AutoToM/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://cambrian-mllm.github.io/static/img/preview.png" />
-        <meta name="twitter:title" content="Cambrian-1: A Fully Open Vision-Centric Exploration of MLLMs" />
-        <meta name="twitter:description" content="Cambrian-1 is a family of multimodal LLMs with a vision-centric design. We also release CV-Bench, a new vision-centric benchmark, and Cambrian-10M, a multimodal instruction-tuning dataset." />
+        <meta name="twitter:title" content="AutoToM: Automated Bayesian Inverse Planning and Model Discovery for Open-ended Theory of Mind" />
+        <meta name="twitter:description" content="AutoToM is a fully automated and open-ended Theory of Mind reasoning method." />
 
         <script src="./static/js/distill_template.v2.js"></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="header-image">
-                    <img draggable="false" src="static/img/cambrian.png" alt="Teaser Image" class="teaser-image">
+                    <img draggable="false" src="static/img/autotom.png" alt="Teaser Image" class="teaser-image">
                 </div>
             </div>
         </div>
@@ -228,7 +228,7 @@
                         <p class="text">
                             There are two current approaches to Theory of Mind reasoning: 
                             <ol class="text">
-                                <li>Directly applying LLMs to reason about people's mental states with prompting strategies such as perspective-taking, change-tracking, and temporal-spatial reasoning<d-cite key="sclar2023minding"></d-cite><d-cite key="wilf2023think"></d-cite><d-cite key="hou2024timetom"></d-cite>. However, even with these advanced prompting techniques, LLMs still make systematic errors in complex scenarios.<d-cite key="jin2024mmtom"></d-cite></li>
+                                <li>Directly applying LLMs to reason about people's mental states with prompting strategies such as perspective-taking, change-tracking, and temporal-spatial reasoning<d-cite key="sclar2023minding"></d-cite><d-cite key="wilf2023think"></d-cite><d-cite key="hou2024timetom"></d-cite>. However, even with these advanced prompting techniques, LLMs still make systematic errors in complex scenarios<d-cite key="jin2024mmtom"></d-cite>. </li>
                                 <li>Using model-based inference, particularly Bayesian Inverse Planning (BIP). 
                                     Recent works have proposed to combine BIP and LLMs to achieve scalable yet robust model-based ToM inference<d-cite key="jin2024mmtom"></d-cite><d-cite key="shi2024muma"></d-cite>. 
                                     While these methods significantly outperform LLMs in specific domains, they use rigid, handcrafted models, which cannot generalize across different domains.</li>
@@ -301,6 +301,8 @@
                     <!-- We estimate each local conditional in \( P(V^{t_s:t}, X^{t_s:t}) \) using an LLM.  -->
                     We estimate each local conditional in the BToM model using an LLM.
                     After marginalizing the joint distribution over non-target latent variables, we then produce the posterior probabilities of the target variable in the query.
+                    We greatly generalize prior methods by enabling any ToM inference based on any BToM model structure, simultaneously considering multiple non-target latent variables 
+                    and supporting arbitrary levels of recursion for high-order ToM inference.
                 </p>
                 <d-figure id="fig-inverse-planning" >
                     <figure>
@@ -387,12 +389,6 @@
                 MMToM-QA<d-cite key="jin2024mmtom"></d-cite>, MuMA-ToM<d-cite key="shi2024muma"></d-cite>, and Hi-ToM<d-cite key="he2023hi"></d-cite>. 
                 As shown in <a href="#fig-benchmarks">Figure 5</a>, these benchmarks encompass different mental variables, observable contexts, numbers of agents, the presence or absence of utterances, wording styles, and modalities.
                 AutoToM autonomously discover the appropriate BToM models for them.
-                <!-- Finally, we leverage the insights from all of our previous studies to train a high-performance Cambrian model.
-                We train with three different sizes of LLM backbones: LLaMA-3-Instruct-8B, Vicuna-1.5-13B, and Hermes-2-Yi-34B.
-                Our visual tower uses a combination of four models&mdash;SigLIP, CLIP, DINOv2, and OpenCLIP ConvNeXt 
-                (see <a href="#sec:model_ensemble">Combining Multiple Vision Encoders</a>) with the <a href="#connector_design">Spatial Vision Aggregator</a>.
-                We use 2.5M adapter data and Cambrian-7M instruction tuning data (see <a href="#sec:data_curation">Data Curation</a>).
-                We evaluate our models on the <a href="#sec:benchmarking">categorized benchmarks</a>, and tabulate the results in <a href="#tab:final_table">Table 5</a>. Cambrian-1 exceeds other open-source models such as LLaVA-NeXT and Mini-Gemini, and achieves comparable performance on a number of benchmarks with the best proprietary models such as GPT-4V, Gemini-Pro, and MM-1. -->
             </p>
 
             <d-figure id="fig-benchmarks">
@@ -406,427 +402,161 @@
 
             
             <p class="text">
-                Unlike our AutoToM method, many recent ToM baselines can only be applied to specific benchmarks. Among general methods, AutoToM achieved the best result on average.
+                The main results are summarized in <a href="#tab:resultss">Table 1</a>.
+                Unlike our AutoToM method, many recent ToM baselines can only be applied to specific benchmarks. Among general methods, AutoToM achieved the best result on average. 
+                In particular, it outperformed all baselines by a large margin on more challenging benchmarks such as BigToM (backward), MMToM-QA, and MuMA-ToM. 
+                This is because Bayesian inverse planning is more robust in inferring mental states given <i>long context</i> with complex environments and agent behavior.
+                It is also more adept at <i>recursive reasoning</i> which is key to higher-order inference.
             </p>
-            <div id="tab:final_table" style="display: flex; flex-direction: column; align-items: center;" class="figure">
+            <p class="text">
+                Notably, AutoToM achieved similar performance to the configuration using manually specified models (AutoToM w/ Model Spec.), 
+                indicating that automatic model discovery without domain knowledge is as effective as human-provided models.
+            </p>
+            <div id="tab:results" style="display: flex; flex-direction: column; align-items: center;">
                 <div class="table-container">
                     <table class="data-table">
-                        <thead>
+                      <thead>
                         <tr>
-                            <th colspan="2" class="tb-hdr">Model</th>
-                            <th colspan="5" class="tb-hdr">General</th>
-                            <th colspan="5" class="tb-hdr">Knowledge</th>
-                            <th colspan="5" class="tb-hdr">OCR & Chart</th>
-                            <th colspan="5" class="tb-hdr">Vision-Centric</th>
+                          <th>Method</th>
+                          <th>Type</th>
+                          <th>ToMi</th>
+                          <th>BigToM<sup>f</sup></th>
+                          <th>BigToM<sup>b</sup></th>
+                          <th>MMToM-QA</th>
+                          <th>MuMA-ToM</th>
+                          <th>Hi-ToM</th>
+                          <th>All</th>
                         </tr>
+                      </thead>
+                      <tbody>
                         <tr>
-                            <th>Method</th>
-                            <th class="rotate"># Vis Tok.</th>
-                            <th class="rotate">Avg</th>
-                            <th class="rotate">MME<sup>P</sup></th>
-                            <th class="rotate">MMB</th>
-                            <th class="rotate">SEED<sup>I</sup></th>
-                            <th class="rotate">GQA</th>
-                            <th class="rotate">Avg</th>
-                            <th class="rotate">SQA<sup>I</sup></th>
-                            <th class="rotate">MMMU<sup>V</sup></th>
-                            <th class="rotate">MathVista<sup>M</sup></th>
-                            <th class="rotate">AI2D</th>
-                            <th class="rotate">Avg</th>
-                            <th class="rotate">ChartQA</th>
-                            <th class="rotate">OCRBench</th>
-                            <th class="rotate">TextVQA</th>
-                            <th class="rotate">DocVQA</th>
-                            <th class="rotate">Avg</th>
-                            <th class="rotate">MMVP</th>
-                            <th class="rotate">RealworldQA</th>
-                            <th class="rotate">CV-Bench<sup>2D</sup></th>
-                            <th class="rotate">CV-Bench<sup>3D</sup></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>GPT-4V</td>
-                            <td>UNK.</td>
-                            <td>63.0</td>
-                            <td>1409.4</td>
-                            <td>75.8</td>
-                            <td>69.1</td>
-                            <td>36.8</td>
-                            <td>65.2</td>
-                            <td>75.7</td>
-                            <td>56.8</td>
-                            <td>49.9</td>
-                            <td>78.2</td>
-                            <td>77.4</td>
-                            <td>78.5</td>
-                            <td>64.5</td>
-                            <td>78.0</td>
-                            <td>88.4</td>
-                            <td>62.4</td>
-                            <td>50.0</td>
-                            <td>61.4</td>
-                            <td>64.3</td>
-                            <td>73.8</td>
+                          <td>SymbolicToM</td>
+                          <td>Specific</td>
+                          <td class="highlight-orange">98.50</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
                         </tr>
                         <tr>
-                            <td>Gemini-1.0 Pro</td>
-                            <td>UNK.</td>
-                            <td>-</td>
-                            <td>1496.6</td>
-                            <td>73.6</td>
-                            <td>70.7</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>79.5</td>
-                            <td>47.9</td>
-                            <td>45.2</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>65.9</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
+                          <td>TimeToM</td>
+                          <td>Specific</td>
+                          <td>97.00</td>
+                          <td class="highlight-orange">96.00</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
                         </tr>
                         <tr>
-                            <td>Gemini-1.5 Pro</td>
-                            <td>UNK.</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>58.5</td>
-                            <td>52.1</td>
-                            <td>80.3</td>
-                            <td>-</td>
-                            <td>81.3</td>
-                            <td>-</td>
-                            <td>73.5</td>
-                            <td>86.5</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>67.5</td>
-                            <td>-</td>
-                            <td>-</td>
+                          <td>BIP-ALM</td>
+                          <td>Specific</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>76.70</td>
+                          <td>33.90</td>
+                          <td>-</td>
+                          <td>-</td>
                         </tr>
                         <tr>
-                            <td>Grok-1.5</td>
-                            <td>UNK.</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>53.6</td>
-                            <td>52.8</td>
-                            <td>88.3</td>
-                            <td>-</td>
-                            <td>76.1</td>
-                            <td>-</td>
-                            <td>78.1</td>
-                            <td>85.6</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>68.7</td>
-                            <td>-</td>
-                            <td>-</td>
+                          <td>LIMP</td>
+                          <td>Specific</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>76.60</td>
+                          <td>-</td>
+                          <td>-</td>
+                        </tr>
+                        <tr style="border-bottom: 3px solid black;">
+                          <td class="highlight-orange">AutoToM w/ Model Spec.</td>
+                          <td>Specific</td>
+                          <td>86.88</td>
+                          <td>93.00</td>
+                          <td class="highlight-orange">74.25</td>
+                          <td class="highlight-orange">79.83</td>
+                          <td class="highlight-orange">84.00</td>
+                          <td class="highlight-orange">74.00</td>
+                          <td class="highlight-orange">81.99</td>
                         </tr>
                         <tr>
-                            <td>MM-1-8B</td>
-                            <td>144</td>
-                            <td>-</td>
-                            <td>1529.3</td>
-                            <td>72.3</td>
-                            <td>69.9</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>72.6</td>
-                            <td>37.0</td>
-                            <td>35.9</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
+                          <td>LLaMA 3.1 70B</td>
+                          <td>General</td>
+                          <td>65.00</td>
+                          <td>87.63</td>
+                          <td>65.00</td>
+                          <td>46.50</td>
+                          <td>46.33</td>
+                          <td>50.00</td>
+                          <td>60.08</td>
                         </tr>
                         <tr>
-                            <td>MM-1-30B</td>
-                            <td>144</td>
-                            <td>-</td>
-                            <td>1637.6</td>
-                            <td>75.1</td>
-                            <td>72.1</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>81.0</td>
-                            <td>44.7</td>
-                            <td>39.4</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr class="highlight-gray">
-                            <td colspan="22"><i>Base LLM: Llama-3-Ins-8B</i></td>
+                          <td>Gemini 1.5 Flash</td>
+                          <td>General</td>
+                          <td>56.13</td>
+                          <td>79.00</td>
+                          <td>68.25</td>
+                          <td>33.50</td>
+                          <td>52.56</td>
+                          <td>52.00</td>
+                          <td>56.91</td>
                         </tr>
                         <tr>
-                            <td>Mini-Gemini-HD-8B</td>
-                            <td>2880</td>
-                            <td>72.7</td>
-                            <td><b>1606.0</b></td>
-                            <td>72.7</td>
-                            <td>73.2</td>
-                            <td>64.5</td>
-                            <td>55.7</td>
-                            <td>75.1</td>
-                            <td>37.3</td>
-                            <td>37.0</td>
-                            <td><b>73.5</b></td>
-                            <td>62.9</td>
-                            <td>59.1</td>
-                            <td>47.7</td>
-                            <td>70.2</td>
-                            <td>74.6</td>
-                            <td>51.5</td>
-                            <td>18.7</td>
-                            <td>62.1</td>
-                            <td>62.2</td>
-                            <td>63.0</td>
+                          <td>GPT-4o</td>
+                          <td>General</td>
+                          <td>70.13</td>
+                          <td>92.25</td>
+                          <td>62.75</td>
+                          <td>44.00</td>
+                          <td>63.55</td>
+                          <td>56.00</td>
+                          <td>64.78</td>
                         </tr>
                         <tr>
-                            <td>LLaVA-NeXT-8B</td>
-                            <td>2880</td>
-                            <td>72.5</td>
-                            <td>1603.7</td>
-                            <td>72.1</td>
-                            <td>72.7</td>
-                            <td><b>65.2</b></td>
-                            <td>55.6</td>
-                            <td>72.8</td>
-                            <td>41.7</td>
-                            <td>36.3</td>
-                            <td>71.6</td>
-                            <td>63.9</td>
-                            <td>69.5</td>
-                            <td>49.0</td>
-                            <td>64.6</td>
-                            <td>72.6</td>
-                            <td>56.6</td>
-                            <td>38.7</td>
-                            <td>60.1</td>
-                            <td>62.2</td>
-                            <td>65.3</td>
-                        </tr>
-                        <tr class="highlight-orange">
-                            <td>Cambrian-1-8B</td>
-                            <td class="highlight-blue">576</td>
-                            <td><b>73.1</b></td>
-                            <td>1,547.1</td>
-                            <td><b>75.9</b></td>
-                            <td><b>74.7</b></td>
-                            <td>64.6</td>
-                            <td><b>61.3</b></td>
-                            <td><b>80.4</b></td>
-                            <td><b>42.7</b></td>
-                            <td><b>49.0</b></td>
-                            <td>73.0</td>
-                            <td><b>71.3</b></td>
-                            <td><b>73.3</b></td>
-                            <td><b>62.4</b></td>
-                            <td><b>71.7</b></td>
-                            <td><b>77.8</b></td>
-                            <td><b>65.0</b></td>
-                            <td><b>51.3</b></td>
-                            <td><b>64.2</b></td>
-                            <td><b>72.3</b></td>
-                            <td><b>72.0</b></td>
-                        </tr>
-                        <tr class="highlight-gray">
-                            <td colspan="22"><i>Base LLM: Vicuna-1.5-13B</i></td>
+                          <td>SimToM</td>
+                          <td>General</td>
+                          <td>74.88</td>
+                          <td>91.25</td>
+                          <td>51.50</td>
+                          <td>52.50</td>
+                          <td>47.60</td>
+                          <td>71.00</td>
+                          <td>66.94</td>
                         </tr>
                         <tr>
-                            <td>Mini-Gemini-HD-13B</td>
-                            <td>2880</td>
-                            <td>70.7</td>
-                            <td>1597.0</td>
-                            <td>68.6</td>
-                            <td>70.6</td>
-                            <td>63.7</td>
-                            <td>54.1</td>
-                            <td>71.9</td>
-                            <td>37.3</td>
-                            <td>37.0</td>
-                            <td>70.1</td>
-                            <td>60.8</td>
-                            <td>56.6</td>
-                            <td>46.6</td>
-                            <td>70.2</td>
-                            <td>69.8</td>
-                            <td>49.4</td>
-                            <td>19.3</td>
-                            <td>57.5</td>
-                            <td>53.6</td>
-                            <td>67.3</td>
+                          <td class="highlight-orange">AutoToM</td>
+                          <td>General</td>
+                          <td class="highlight-orange">86.25</td>
+                          <td class="highlight-orange">92.50</td>
+                          <td class="highlight-orange">75.75</td>
+                          <td class="highlight-orange">75.50</td>
+                          <td class="highlight-orange">81.44</td>
+                          <td class="highlight-orange">72.50</td>
+                          <td class="highlight-orange">80.66</td>
                         </tr>
-                        <tr>
-                            <td>LLaVA-NeXT-13B</td>
-                            <td>2880</td>
-                            <td>69.9</td>
-                            <td>1575.0</td>
-                            <td>70.0</td>
-                            <td>65.6</td>
-                            <td><b>65.4</b></td>
-                            <td>53.7</td>
-                            <td>73.5</td>
-                            <td>36.2</td>
-                            <td>35.1</td>
-                            <td>70.0</td>
-                            <td>62.9</td>
-                            <td>62.2</td>
-                            <td>51.4</td>
-                            <td>67.1</td>
-                            <td>70.9</td>
-                            <td>55.9</td>
-                            <td>36.0</td>
-                            <td>59.1</td>
-                            <td>62.7</td>
-                            <td>65.7</td>
-                        </tr>
-                        <tr class="highlight-orange">
-                            <td>Cambrian-1-13B</td>
-                            <td class="highlight-blue">576</td>
-                            <td><b>73.7</b></td>
-                            <td><b>1,610.4</b></td>
-                            <td><b>75.7</b></td>
-                            <td><b>74.4</b></td>
-                            <td>64.3</td>
-                            <td><b>60.2</b></td>
-                            <td><b>79.3</b></td>
-                            <td><b>40.0</b></td>
-                            <td><b>48.0</b></td>
-                            <td><b>73.6</b></td>
-                            <td><b>71.3</b></td>
-                            <td><b>73.8</b></td>
-                            <td><b>61.9</b></td>
-                            <td><b>72.8</b></td>
-                            <td><b>76.8</b></td>
-                            <td><b>62.2</b></td>
-                            <td><b>41.3</b></td>
-                            <td><b>63.0</b></td>
-                            <td><b>72.5</b></td>
-                            <td><b>71.8</b></td>
-                        </tr>
-                        <tr class="highlight-gray">
-                            <td colspan="22"><i>Base LLM: Hermes2-Yi-34B</i></td>
-                        </tr>
-                        <tr>
-                            <td>Mini-Gemini-HD-34B</td>
-                            <td>2880</td>
-                            <td>76.2</td>
-                            <td>1659.0</td>
-                            <td>80.6</td>
-                            <td>75.3</td>
-                            <td>65.8</td>
-                            <td>62.4</td>
-                            <td>77.7</td>
-                            <td>48.0</td>
-                            <td>43.4</td>
-                            <td><b>80.5</b></td>
-                            <td>68.1</td>
-                            <td>67.6</td>
-                            <td>51.8</td>
-                            <td>74.1</td>
-                            <td><b>78.9</b></td>
-                            <td>63.8</td>
-                            <td>37.3</td>
-                            <td>67.2</td>
-                            <td>71.5</td>
-                            <td>79.2</td>
-                        </tr>
-                        <tr>
-                            <td>LLaVA-NeXT-34B</td>
-                            <td>2880</td>
-                            <td>76.0</td>
-                            <td>1633.2</td>
-                            <td>79.3</td>
-                            <td><b>75.9</b></td>
-                            <td><b>67.1</b></td>
-                            <td>62.5</td>
-                            <td>81.8</td>
-                            <td>46.7</td>
-                            <td>46.5</td>
-                            <td>74.9</td>
-                            <td>67.7</td>
-                            <td>68.7</td>
-                            <td>54.5</td>
-                            <td>69.5</td>
-                            <td>78.1</td>
-                            <td>64.0</td>
-                            <td>47.3</td>
-                            <td>61.0</td>
-                            <td>73.0</td>
-                            <td>74.8</td>
-                        </tr>
-                        <tr class="highlight-orange">
-                            <td>Cambrian-1-34B</td>
-                            <td class="highlight-blue">576</td>
-                            <td><b>76.8</b></td>
-                            <td><b>1689.3</b></td>
-                            <td><b>81.4</b></td>
-                            <td>75.3</td>
-                            <td>65.8</td>
-                            <td><b>67.0</b></td>
-                            <td><b>85.6</b></td>
-                            <td><b>49.7</b></td>
-                            <td><b>53.2</b></td>
-                            <td>79.7</td>
-                            <td><b>71.9</b></td>
-                            <td><b>75.6</b></td>
-                            <td><b>60.0</b></td>
-                            <td><b>76.7</b></td>
-                            <td>75.5</td>
-                            <td><b>68.5</b></td>
-                            <td><b>52.7</b></td>
-                            <td><b>67.8</b></td>
-                            <td><b>74.0</b></td>
-                            <td><b>79.7</b></td>
-                        </tr>
-                        </tbody>
+                      </tbody>
                     </table>
-                </div>
+                  </div>
             </div>
+            <figcaption style="text-align: center; width: 100%;">
+                <strong>Table 1:</strong> Results of AutoToM and baselines on all benchmarks.
+                <!-- There are two groups of methods: methods that require domain-specific knowledge and methods that can be generally applied to any domain.  -->
+                “-” indicates that the domain-specific method is not applicable to the benchmark.
+            </figcaption>
 
         </div>
 
         <div id="conclusion" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
             <h2 class="text" style="margin-top:0px; margin-bottom:10px">Conclusion</h2>
             <p class="text">
-                To conclude, Cambrian-1 is a family of state-of-the-art MLLMs that achieve top performance across diverse benchmarks 
-                and excel in visual-centric tasks. We provide model weights, open-source code, datasets, and detailed recipes for model training and evaluation. 
-                We hope our work will strengthen the open research community and accelerate research in both visual representation learning and multimodal systems.
+                To conclude, AutoToM is a novel framework for open-ended Theory of Mind. 
+                Given any ToM inference problem, AutoToM can automatically construct a suitable BToM model and conduct automated Bayesian inverse planning with an LLM backend. 
+                It suggests a promising direction toward cognitively grounded ToM modeling that is scalable, robust, and open-ended.
             </p>
         </div>
 
