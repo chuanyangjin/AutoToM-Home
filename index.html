@@ -284,13 +284,15 @@
             <h1 class="text">Automated Bayesian Inverse Planning</h1>
                 <p class="text">
                     Given a BToM model, we integrate LLMs as the computational backend to implement every aspect of the Bayesian inverse planning. 
-                    The construction, information flow, and computations within a given BToM model are entirely automated. (<a href="#fig-inverse-planning">Figure 2</a>)
+                    This includes hypothesis sampling for latent mental variables, and probabilistic inference for the target mental variable (<a href="#fig-inverse-planning">Figure 2</a>).
+                    The construction, information flow, and computations within the BToM model are entirely automated.
                 </p>
                 <p class="text">
                     <strong>Hypothesis Sampling. </strong> 
                     Conventional BIP assumes a maually defined hypothesis space as well as hypothesis representation for each latent mental variable. 
-                    Our hypothesis sampling module instead leverages an LLM to propose only a small set of quality hypotheses for each latent variable.
+                    Our hypothesis sampling module instead leverages an LLM to propose only a small set of quality hypotheses for each latent variable,
                     <!-- in \( V^{t_s:t} \). -->
+                    conditioned on observable variables and their values extracted from the context.
                     We further apply <i>hypothesis reduction</i> to eliminate unlikely hypotheses and reduce the hypothesis space.
                 </p>
                 
@@ -298,7 +300,7 @@
                     <strong>Bayesian Inference.</strong> 
                     <!-- We estimate each local conditional in \( P(V^{t_s:t}, X^{t_s:t}) \) using an LLM.  -->
                     We estimate each local conditional in the BToM model using an LLM.
-                    After marginalizing the joint distribution over non-target latent variables, we then produce the posterior probabilities of the target variable.
+                    After marginalizing the joint distribution over non-target latent variables, we then produce the posterior probabilities of the target variable in the query.
                 </p>
                 <d-figure id="fig-inverse-planning" >
                     <figure>
@@ -367,7 +369,7 @@
                 <d-figure id="fig-comparison" >
                     <figure>
                         <div style="text-align: center;">
-                            <img data-zoomable="" draggable="false" src="static/img/compari.png" alt="Comparison" style="width: 75%;">
+                            <img data-zoomable="" draggable="false" src="static/img/comparison.png" alt="Comparison" style="width: 75%;">
                         </div>
                         <figcaption>
                             <strong>Figure 4:</strong> Averaged performance and compute of AutoToM and the ablated methods on all benchmarks.
