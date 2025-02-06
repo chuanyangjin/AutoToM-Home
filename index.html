@@ -86,28 +86,27 @@
 
                     <div class="button-container">
                         <!-- replace arxiv -->
-                        <a href="https://arxiv.org/abs/2406.16860" class="button paper-link" target="_blank">
+                        <a href="https://chuanyangjin.com/AutoToM/" class="button paper-link" target="_blank">
                             <span class="icon is-small">
                                 <i class="ai ai-arxiv"></i>
                             </span>
                             arXiv
                         </a>
                         <!-- replace pdf -->
-                        <a href="https://arxiv.org/pdf/2406.16860" class="button paper-link" target="_blank">
+                        <a href="https://chuanyangjin.com/AutoToM/" class="button paper-link" target="_blank">
                             <span class="icon is-small">
                                 <i class="fas fa-file-pdf"></i>
                             </span>
                             <span>pdf</span>
                         </a>
                         <!-- replace image -->
-                        <a href="https://github.com/cambrian-mllm/cambrian" class="button" target="_blank">
+                        <a href="https://chuanyangjin.com/AutoToM/" class="button" target="_blank">
                             <span class="icon is-small">
                                 <i class="fab fa-github"></i>
                             </span>
                             <span>Code</span>
                         </a>
-                        <!-- <br> -->
-                        <a href="https://huggingface.co/collections/nyu-visionx/cambrian-1-models-666fa7116d5420e514b0f23c" class="button" target="_blank">
+                        <!-- <a href="https://huggingface.co/collections/nyu-visionx/cambrian-1-models-666fa7116d5420e514b0f23c" class="button" target="_blank">
                             <span class="icon is-small">
                                 <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo" style="height: 1em;">
                             </span>
@@ -124,7 +123,7 @@
                                 <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo" style="height: 1em;">
                             </span>
                             <span>CV-Bench</span>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
                 <div class="header-image">
@@ -150,7 +149,7 @@
                 </p> -->
                 <p style="text-align: center; margin-bottom: 0;">
                     <span class="author-note"><sup>*</sup>Equal Contribution</span>&emsp;
-                    <span class="author-note"><sup>&dagger;</sup>Project Lead</span>
+                    <span class="author-note"><sup>&dagger;</sup>Corresponding Author</span>
                     <!-- <span class="author-note"><sup>&dagger;</sup>Corresponding Author</span> -->
                 </p>
             </div>
@@ -365,9 +364,90 @@
 
                 <p class="text">
                     <strong>Effective and Efficient.</strong>
-                    The results from our ablation study (<a href="#fig-comparison">Figure 4</a>) demonstrate that the automatic model discovery in AutoToM can construct suitable BToM model that 
-                    not only enables rich ToM inferences but also reduces compute, balancing accuracy and cost.
+                    The results from our ablation study (<a href="#fig-comparison">Figure 4</a>) highlight the benefits of variable adjustment, timestep adjustment, and hypothesis reduction.
+                    The automatic model discovery in AutoToM can construct suitable BToM model that not only enables rich ToM inferences but also reduces compute, balancing accuracy and cost.
+                    <!-- <a href="#ablation-table">Table 1</a> and <a href="#fig-comparison">Figure 4</a> -->
                 </p>
+
+                <!-- <table class="ablation-table">
+                    <thead>
+                      <tr>
+                        <th>Method</th>
+                        <th>ToMi</th>
+                        <th>BigToM<sup>f</sup></th>
+                        <th>BigToM<sup>b</sup></th>
+                        <th>MMToM-QA</th>
+                        <th>MuMA-ToM</th>
+                        <th>Hi-ToM</th>
+                        <th>All</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                          <td>w/o hypo. reduction</td>
+                          <td>85.38</td>
+                          <td>92.00</td>
+                          <td>74.50</td>
+                          <td>75.83</td>
+                          <td>81.67</td>
+                          <td>69.50</td>
+                          <td>79.81</td>
+                        </tr>
+                      <tr>
+                        <td>w/ POMDP</td>
+                        <td>70.88</td>
+                        <td>92.75</td>
+                        <td>74.00</td>
+                        <td>79.83</td>
+                        <td>50.78</td>
+                        <td>67.00</td>
+                        <td>72.54</td>
+                      </tr>
+                      <tr>
+                        <td>w/o variable adj.</td>
+                        <td>83.13</td>
+                        <td>91.75</td>
+                        <td>51.25</td>
+                        <td>76.17</td>
+                        <td>77.89</td>
+                        <td>66.50</td>
+                        <td>74.45</td>
+                      </tr>
+                      <tr>
+                        <td>w/ last timestep</td>
+                        <td>61.38</td>
+                        <td>91.00</td>
+                        <td>51.50</td>
+                        <td>74.33</td>
+                        <td>78.33</td>
+                        <td>44.50</td>
+                        <td>66.84</td>
+                      </tr>
+                      <tr>     
+                        <td>w/ all timesteps</td>
+                        <td>83.38</td>
+                        <td>92.63</td>
+                        <td>52.00</td>
+                        <td>76.50</td>
+                        <td>79.33</td>
+                        <td>69.00</td>
+                        <td>75.47</td>
+                      </tr>
+                      <tr>
+                        <td>AutoToM</td>
+                        <td>86.25</td>
+                        <td>92.50</td>
+                        <td>75.75</td>
+                        <td>75.50</td>
+                        <td>81.44</td>
+                        <td>72.50</td>
+                        <td>80.66</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <figcaption style="text-align: center; width: 100%;">
+                    <strong>Table 1:</strong> Results of AutoToM and the ablated methods on all benchmarks. 
+                </figcaption> -->
 
                 <d-figure id="fig-comparison" >
                     <figure>
@@ -382,6 +462,7 @@
                 
             </div>
         </div>
+
 
         <div id='sec:performance' class="sub-section">
             <h1 class="text">Open-ended and Robust Theory of Mind</h1>
@@ -474,7 +555,7 @@
                           <td>-</td>
                           <td>-</td>
                         </tr>
-                        <tr style="border-bottom: 3px solid black;">
+                        <tr>
                           <td class="highlight-orange">AutoToM w/ Model Spec.</td>
                           <td>Specific</td>
                           <td>86.88</td>
@@ -527,7 +608,7 @@
                           <td>52.50</td>
                           <td>47.60</td>
                           <td>71.00</td>
-                          <td>66.94</td>
+                          <td>64.79</td>
                         </tr>
                         <tr>
                           <td class="highlight-orange">AutoToM</td>
@@ -561,16 +642,24 @@
             </p>
         </div>
 
+        <div id="acknowledgement" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Acknowledgement</h2>
+            <p class="text">
+                We would like to thank the <a href="https://cambrian-mllm.github.io/Cambrian">Cambrian</a> authors for providing this webpage template.
+            </p>
+        </div>
+
         </d-article>
         <d-appendix>
             <h3>BibTeX</h3>
             <p class="bibtex">
-                @article{tong2024cambrian,<br>
+                <!-- @article{tong2024cambrian,<br>
                 &nbsp;&nbsp;title={{Cambrian-1: A Fully Open, Vision-Centric Exploration of Multimodal LLMs}},<br>
                 &nbsp;&nbsp;author={Tong, Shengbang and Brown, Ellis and Wu, Penghao and Woo, Sanghyun and Middepogu, Manoj and Akula, Sai Charitha and Yang, Jihan and Yang, Shusheng, and Iyer, Adithya and Pan, Xichen and Wang, Austin and Fergus, Rob and LeCun, Yann and Xie, Saining},<br>
                 &nbsp;&nbsp;journal={arXiv preprint arXiv:2406.16860},<br>
                 &nbsp;&nbsp;year={2024}<br>
-                }
+                } -->
+                arXiv coming soon.
             </p>
 
             <d-footnote-list></d-footnote-list>
