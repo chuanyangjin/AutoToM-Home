@@ -245,7 +245,7 @@
                         <p class="text">
                             To conduct BIP in different scenarios, there are several key challenges:
                             1) Different ToM inference problem requires different BToM models (see <a href="#fig-benchmarks">Figure 4</a>), but we don't know which is most suitable;
-                            2) There are many time steps in a given context, and we needs to reason which steps are relevant;
+                            2) There are many time steps in a given context, and we need to reason which steps are relevant;
                             3) There is no predefined hypothesis space for each mental variable.
                         </p>
                         <h3 class="text">AutoToM: A Paradigm Shift</h3>
@@ -289,7 +289,7 @@
                 </p>
                 <p class="text">
                     <strong>Hypothesis Sampling. </strong> 
-                    Conventional BIP assumes a maually defined hypothesis space as well as hypothesis representation for each latent mental variable. 
+                    Conventional BIP assumes a manually defined hypothesis space as well as hypothesis representation for each latent mental variable. 
                     Our hypothesis sampling module instead leverages an LLM to propose only a small set of quality hypotheses for each latent variable,
                     <!-- in \( V^{t_s:t} \). -->
                     conditioned on observable variables and their values extracted from the context.
@@ -347,7 +347,7 @@
                 <p class="text">
                     <i>Timestep Adjustment.</i> 
                     If the model utility remains low and no significant improvements can be achieved through variable adjustment given the current timesteps \( t_s:t \), 
-                    we may need to incorporate an additional timestep, \( t_s-1 \), to provide more context for the inference. 
+                    we may incorporate an additional timestep, \( t_s-1 \), to provide more context for the inference. 
                     When we add one more timestep, we first apply the model structure in the initial model proposal, and then conduct variable adjustments for this new timestep as well.
                 </p>
                 
@@ -390,21 +390,21 @@
                 We evaluated our method on multiple Theory of Mind benchmarks, including ToMi<d-cite key="le2019revisiting"></d-cite>, BigToM<d-cite key="gandhi2024understanding"></d-cite>, 
                 MMToM-QA<d-cite key="jin2024mmtom"></d-cite>, MuMA-ToM<d-cite key="shi2024muma"></d-cite>, and Hi-ToM<d-cite key="he2023hi"></d-cite>. 
                 As shown in <a href="#fig-benchmarks">Figure 5</a>, these benchmarks encompass different mental variables, observable contexts, numbers of agents, the presence or absence of utterances, wording styles, and modalities.
-                AutoToM autonomously discover the appropriate BToM models for them.
+                AutoToM autonomously discovers the appropriate BToM models for them.
             </p>
 
             <d-figure id="fig-benchmarks">
                 <figure>
                     <img data-zoomable="" draggable="false" src="static/img/benchmarks_and_models.png" alt="Incorporating System Prompt in Instruction Tuning Data alleviates “Answer Machine Phenomenon”">
                     <figcaption>
-                        <strong>Figure 5:</strong> Examples questions and the necessary BToM model in diverse benchmarks.
+                        <strong>Figure 5:</strong> Example questions and the necessary BToM model in diverse benchmarks.
                     </figcaption>
                 </figure>
             </d-figure>
 
             
             <p class="text">
-                The main results are summarized in <a href="#tab:resultss">Table 1</a>.
+                The main results are summarized in <a href="#tab:results">Table 1</a>.
                 Unlike our AutoToM method, many recent ToM baselines can only be applied to specific benchmarks. 
                 Among general methods, AutoToM achieves <i>state-of-the-art results across all benchmarks</i>.
                 <!-- In particular, it outperformed all baselines by a large margin on more challenging benchmarks such as BigToM (backward), MMToM-QA, and MuMA-ToM.  -->
